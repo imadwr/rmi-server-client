@@ -70,9 +70,9 @@ public class MachineForm extends javax.swing.JInternalFrame {
     
     public void loadSalles() {
         try {
-            for(Salle m : daoSalle.findAll())
+            for(Salle s : daoSalle.findAll())
             {
-                salleComboBox.addItem(m);
+                salleComboBox.addItem(s);
             }
         } catch (RemoteException ex) {
             Logger.getLogger(MachineForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -326,15 +326,15 @@ public class MachineForm extends javax.swing.JInternalFrame {
         String machineRef = tblModel.getValueAt(listMachines.getSelectedRow(), 1).toString();
         String machineMarque = tblModel.getValueAt(listMachines.getSelectedRow(), 2).toString();
         double machinePrix = Double.parseDouble(tblModel.getValueAt(listMachines.getSelectedRow(), 3).toString());
-        Salle salle = (Salle)  tblModel.getValueAt(listMachines.getSelectedRow(), 4);
-        
+        Salle salle = (Salle) tblModel.getValueAt(listMachines.getSelectedRow(), 4);
+
         this.selectedMachine = new Machine(machineRef, machineMarque, machinePrix, salle);
         this.selectedMachine.setId(machineId);
         
         txtRef.setText(machineRef);
         txtMarque.setText(machineMarque);
-        txtPrix.setText("" + machinePrix);
-        salleComboBox.setSelectedItem(salle);
+        txtPrix.setText(machinePrix + "");
+        salleComboBox.getModel().setSelectedItem(salle);
         
         
     }//GEN-LAST:event_listMachinesMouseClicked
